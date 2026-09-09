@@ -6,6 +6,8 @@
   <title>Login</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link href="style.css" rel="stylesheet">
+  <link href="css/navbar.css" rel="stylesheet">
+  
   <style>
       body {
         /* Reemplaza con la ruta real de tu imagen */
@@ -31,12 +33,11 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg bg-primary">
+  <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
           <img src="img/logo.png" alt="Logo Marketplace" width="50" height="50" class="d-inline-block align-text-top">
         </a>
-
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -76,9 +77,9 @@
         </div>
 
         <!-- Botones estilizados para ocupar todo el ancho (w-100) -->
-        <button type="submit" id="submit-btn" class="btn btn-primary btn-lg w-100 rounded-3 mb-2" style="background-color: #9cb4ff; border: none;" disabled>Ingresar</button> 
+        <button type="submit" id="submit-btn" class="btn btn-primary btn-lg w-100 rounded-3 mb-2" style="bg-primary; border: none;" disabled>Ingresar</button> 
         
-        <button type="button" class="btn btn-outline-primary btn-lg w-100 rounded-3">Regístrate</button>
+        <!-- <button type="button" class="btn btn-outline-primary btn-lg w-100 rounded-3">Regístrate</button> -->
       </form>
     </div>
   </div>
