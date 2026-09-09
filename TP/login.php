@@ -14,7 +14,7 @@ if (isset($_SESSION['usuario'])) {
   <title>Login</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link href="css/navbar.css" rel="stylesheet">
-  <link href="css/body.css" rel="stylesheet">
+  <link href="css/body.css?v=3" rel="stylesheet">
 </head>
 <body>
   <nav class="navbar navbar-expand-lg">
@@ -27,7 +27,7 @@ if (isset($_SESSION['usuario'])) {
           <a class="nav-link" href="index.php">Home</a>
         </li>
       </ul>
-      <a href="login.php" class="btn btn-light btn-sm">Login</a>
+     <a href="login.php" class="nav-link">Login</a>
     </div>
   </nav>
 
@@ -55,8 +55,10 @@ if (isset($_SESSION['usuario'])) {
       </form>
     </div>
   </div>
-
-  <script src="js/validation.js?v=2"></script>
+  <footer class="footer text-white text-center py-2 fixed-bottom">
+  <p class="mb-0">Programación Avanzada © 2026</p>
+</footer>
+ <script src="js/validation.js?v=2"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
