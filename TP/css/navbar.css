@@ -1,5 +1,5 @@
 .navbar {
-  background-color: rgb(255, 8, 243);
+  background-color: #d66aac;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   padding: 0.5rem 1rem;
 }
@@ -16,4 +16,8 @@
 
 .navbar-brand img {
   border-radius: 8px;
+}
+
+.footer {
+  background-color: #d66aac;
 }

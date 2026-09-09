@@ -12,6 +12,7 @@ session_start();
     <link href="css/body.css" rel="stylesheet">
   </head>
   <body>
+    
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
         <a class="navbar-brand" href="index.php">
@@ -29,11 +30,28 @@ session_start();
             </span>
             <a href="logout.php" class="btn btn-outline-light btn-sm">Salir</a>
           <?php else: ?>
-            <a href="login.php" class="btn btn-light btn-sm">Login</a>
+            <a href="login.php" class="nav-link">Login</a>
           <?php endif; ?>
         </div>
       </div>
     </nav>
+    <?php if (isset($_SESSION['usuario'])): ?>
+  <div id="mensaje-ingreso" class="alert alert-success text-center">
+    Ingreso correctamente
+  </div>
+<?php endif; ?>
+   <footer class="footer text-white text-center py-2 fixed-bottom">
+  <p class="mb-0">Programación Avanzada © 2026</p>
+</footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script>
+  setTimeout(function () {
+    const mensaje = document.getElementById("mensaje-ingreso");
+
+    if (mensaje) {
+      mensaje.style.display = "none";
+    }
+  }, 4000);
+</script>
   </body>
 </html>
