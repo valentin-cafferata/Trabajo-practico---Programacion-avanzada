@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-image: url('../img/Maxwell-2.jpg');
+  background-repeat: repeat;
+  background-position: 0 0;
+  animation: moverFondo 40s linear infinite;
+}
+
+@keyframes moverFondo {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -1000px 0;
+  }
+}
