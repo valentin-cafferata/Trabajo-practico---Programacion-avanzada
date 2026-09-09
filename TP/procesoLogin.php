@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usuario = $_POST['usuario'];
     $password = $_POST['password'];
 
-    if ($usuario === "fcytuader" && $password === "programacionavanzada") {
+    if ($usuario === "fcytuader" && $password === "pa") {
         $_SESSION['usuario'] = $usuario; // Guardamos el nombre en la sesión
         
         echo "Ingreso correctamente. Redirigiendo...";
