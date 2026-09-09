@@ -11,34 +11,12 @@ session_start();
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link href="css/navbar.css" rel="stylesheet">
-
+    <link href="css/body.css?v=1" rel="stylesheet">
     
     
   </head>
 
-    <style>
-       body {
-        /* Reemplaza con la ruta real de tu imagen */
-        background-image: url('img/Maxwell-2.jpg'); 
-        background-repeat: repeat;
-        background-position: 0 0;
-        
-        /* 40s define la duración. Auméntalo para que sea más lento */
-        animation: moverFondo 40s linear infinite; 
-      }
-
-      @keyframes moverFondo {
-        from {
-          background-position: 0 0;
-        }
-        to {
-          /* Mueve el fondo hacia la izquierda. 
-            Para que el reinicio no se note, el valor en px (1000px) debe coincidir con el ancho de tu imagen. */
-          background-position: -1000px 0; 
-        }
-      }
-      
-    </style>
+    
   
   <body>
     
