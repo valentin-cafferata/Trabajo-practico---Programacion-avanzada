@@ -20,4 +20,9 @@
 
 .footer {
   background-color: #d66aac;
+  margin-top: auto;
+}
+
+main {
+  flex: 1;
 }
