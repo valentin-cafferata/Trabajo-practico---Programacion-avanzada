@@ -10,14 +10,16 @@ if (isset($_POST['g-recaptcha-response'])) {
     
     // Verificar si falló
     if ($result['success'] != 1) {
-        die('Error: Por favor, completa el CAPTCHA correctamente.');
+        header('Location: ../frontend/login.php');
+        exit();
     }
     
     // Si llega aquí, el CAPTCHA es válido y puedes continuar con el login normal.
     // ... [tu código de validación de base de datos] ...
 
 } else {
-    die('Error: CAPTCHA no enviado.');
+    header('Location: ../frontend/login.php');
+    exit();
 }
 ?>
 
