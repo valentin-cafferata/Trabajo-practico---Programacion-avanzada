@@ -1,4 +1,27 @@
 <?php
+// Validar que el token del captcha fue enviado
+if (isset($_POST['g-recaptcha-response'])) {
+    $secret = '6LeRirktAAAAAN8Ybo_AbH7emq7LdJuDA2eg9u2H';
+    $captcha = $_POST['g-recaptcha-response'];
+    
+    // Enviar la consulta a Google
+    $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$captcha");
+    $result = json_decode($response, true);
+    
+    // Verificar si falló
+    if ($result['success'] != 1) {
+        die('Error: Por favor, completa el CAPTCHA correctamente.');
+    }
+    
+    // Si llega aquí, el CAPTCHA es válido y puedes continuar con el login normal.
+    // ... [tu código de validación de base de datos] ...
+
+} else {
+    die('Error: CAPTCHA no enviado.');
+}
+?>
+
+<?php
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
