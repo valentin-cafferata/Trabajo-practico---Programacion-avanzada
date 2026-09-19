@@ -60,7 +60,7 @@ require_once __DIR__ . '/../frontend/includes/header.php';
             Ingreso correctamente
         </div>
 
-        <a class="btn btn-primary" href="../frontend/index.php">
+        <a class="btn btn-primary" href="../frontend/inicio.php">
             Ir al inicio
         </a>
     </div>
