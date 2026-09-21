@@ -22,21 +22,6 @@ require_once __DIR__ . '/includes/header.php';
         Debes completar el captcha.
       </div>
 
-      <script>
-        // Quita el error de la dirección
-        const url = new URL(window.location.href);
-        url.searchParams.delete("captcha_error");
-        window.history.replaceState({}, document.title, url.pathname);
-
-        // Oculta el mensaje después de 5 segundos
-        setTimeout(function () {
-          const mensaje = document.getElementById("captcha-error");
-
-          if (mensaje) {
-            mensaje.style.display = "none";
-          }
-        }, 5000);
-      </script>
     <?php endif; ?>
 
     <?php if (isset($_GET['error'])): ?>
@@ -61,4 +46,5 @@ require_once __DIR__ . '/includes/header.php';
 </div>
 
 <script src="assets/js/validation.js"></script>
+<script src="assets/js/alertas.js"></script>
 <?php require_once __DIR__ . '/includes/footer.php'; ?>
