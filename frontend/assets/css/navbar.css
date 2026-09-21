@@ -11,7 +11,7 @@
 }
 
 .navbar .nav-link:hover {
-  color: #ffc107;
+    color: rgba(255, 255, 255, 0.7) !important;
 }
 
 .navbar-brand img {
