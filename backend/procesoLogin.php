@@ -10,14 +10,14 @@ $usuario = trim($_POST['usuario'] ?? '');
 $password = trim($_POST['password'] ?? '');
 $captcha = $_POST['g-recaptcha-response'] ?? '';
 
-
 if (empty($captcha)) {
     header('Location: ../frontend/login.php?captcha_error=1');
     exit();
 }
 
-
-$secret = '6LeRirktAAAAAN8Ybo_AbH7emq7LdJuDA2eg9u2H';
+// Leer el archivo .env
+$env = parse_ini_file(__DIR__ . '/../.env');
+$secret = $env['RECAPTCHA_SECRET'];
 
 $response = file_get_contents(
     'https://www.google.com/recaptcha/api/siteverify?secret=' .
@@ -36,8 +36,8 @@ if (empty($resultadoCaptcha['success'])) {
 
 // Verificar usuario y contraseña
 if (
-    $usuario !== 'fcytuader' ||
-    $password !== 'programacionavanzada'
+    $usuario !== $env['USUARIO_ADMIN'] ||
+    $password !== $env['PASS_ADMIN']
 ) {
     header('Location: ../frontend/login.php?error=1');
     exit();
