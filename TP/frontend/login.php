@@ -9,28 +9,54 @@ if (isset($_SESSION['usuario'])) {
 $tituloPagina = 'Login';
 require_once __DIR__ . '/includes/header.php';
 ?>
-  <div class="d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 140px);">
-    <div class="card shadow-sm border-0 p-4 rounded-4" style="max-width: 420px; width: 100%;">
-      <div class="text-center mb-4">
-        <h5 class="text-primary fw-bold">Marketplace de Gatitos</h5>
-        <h3 class="fw-bold">Bienvenido de nuevo</h3>
-        <p class="text-muted">Ingresa tus datos para continuar</p>
+<div class="d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 140px);">
+  <div class="card shadow-sm border-0 p-4 rounded-4" style="max-width: 420px; width: 100%;">
+    <div class="text-center mb-4">
+      <h5 class="text-primary fw-bold">Marketplace de gatos feos</h5>
+      <h3 class="fw-bold">Bienvenido de nuevo</h3>
+      <p class="text-muted">Ingresa tus datos para continuar</p>
+    </div>
+
+    <?php if (isset($_GET['captcha_error'])): ?>
+      <div id="captcha-error" class="alert alert-danger">
+        Debes completar el captcha.
       </div>
 
-      <?php if (isset($_GET['error'])): ?>
-        <div class="alert alert-danger">Usuario o contraseña incorrectos.</div>
-      <?php endif; ?>
+      <script>
+        // Quita el error de la dirección
+        const url = new URL(window.location.href);
+        url.searchParams.delete("captcha_error");
+        window.history.replaceState({}, document.title, url.pathname);
 
-      <form id="miForm" action="../backend/procesoLogin.php" method="POST">
-        <div class="mb-3">
-          <input type="text" class="form-control form-control-lg rounded-3" id="usuario" name="usuario" placeholder="Usuario">
-        </div>
-        <div class="mb-3">
-          <input type="password" class="form-control form-control-lg rounded-3" id="password" name="password" placeholder="Contraseña">
-        </div>
-        <button type="submit" id="submit-btn" class="btn btn-primary btn-lg w-100 rounded-3 mb-2" disabled>Ingresar</button>
-      </form>
-    </div>
+        // Oculta el mensaje después de 5 segundos
+        setTimeout(function () {
+          const mensaje = document.getElementById("captcha-error");
+
+          if (mensaje) {
+            mensaje.style.display = "none";
+          }
+        }, 5000);
+      </script>
+    <?php endif; ?>
+
+    <?php if (isset($_GET['error'])): ?>
+      <div class="alert alert-danger">Usuario o contraseña incorrectos.</div>
+    <?php endif; ?>
+
+    <form id="miForm" action="../backend/procesoLogin.php" method="POST">
+      <div class="mb-3">
+        <input type="text" class="form-control form-control-lg rounded-3" id="usuario" name="usuario" placeholder="Usuario">
+      </div>
+      <div class="mb-3">
+        <input type="password" class="form-control form-control-lg rounded-3" id="password" name="password" placeholder="Contraseña">
+      </div>
+
+      <div class="g-recaptcha" data-sitekey="6LeRirktAAAAAKGHNZULA-G9Zt0AfYAadcQQfGHP"></div>
+
+      <button type="submit" id="submit-btn" class="btn btn-primary btn-lg w-100 rounded-3 mb-2" disabled>Ingresar</button>
+    </form>
   </div>
-  <script src="assets/js/validation.js"></script>
+</div>
+
+<script src="assets/js/validation.js"></script>
 <?php require_once __DIR__ . '/includes/footer.php'; ?>
