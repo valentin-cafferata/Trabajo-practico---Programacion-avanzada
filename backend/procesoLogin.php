@@ -45,25 +45,6 @@ if (
 
 // Ingreso correcto
 $_SESSION['usuario'] = $usuario;
-$tituloPagina = 'Ingreso';
 
-require_once __DIR__ . '/../frontend/includes/header.php';
-?>
-
-<div class="d-flex justify-content-center align-items-center"
-     style="min-height: calc(100vh - 140px);">
-
-    <div class="card shadow-sm border-0 p-4 rounded-4 text-center"
-         style="max-width: 420px; width: 100%;">
-
-        <div class="alert alert-success mb-3">
-            Ingreso correctamente
-        </div>
-
-        <a class="btn btn-primary" href="../frontend/inicio.php">
-            Ir al inicio
-        </a>
-    </div>
-</div>
-
-<?php require_once __DIR__ . '/../frontend/includes/footer.php'; ?>
+header('Location: ../frontend/inicio.php');
+exit();

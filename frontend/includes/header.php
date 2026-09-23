@@ -39,7 +39,7 @@ $auth = $desdeBackend ? '' : '../backend/';
           <img src="<?php echo $front; ?>assets/img/profile.png" alt="Perfil" width="40" height="40" class="rounded-circle me-3">
           <?php if (isset($_SESSION['usuario'])): ?>
             <span class="text-light fw-bold me-3">
-              <?php echo htmlspecialchars($_SESSION['usuario']); ?>
+              Logueado como: <?php echo htmlspecialchars($_SESSION['usuario']); ?>
             </span>
             <a href="<?php echo $auth; ?>logout.php" class="btn btn-outline-light btn-sm">Salir</a>
           <?php elseif ($paginaActual !== 'login.php'): ?>
