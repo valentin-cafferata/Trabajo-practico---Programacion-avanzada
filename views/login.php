@@ -28,7 +28,7 @@ require_once __DIR__ . '/includes/header.php';
       <div class="alert alert-danger">Usuario o contraseña incorrectos.</div>
     <?php endif; ?>
 
-    <form id="miForm" action="../backend/procesoLogin.php" method="POST">
+   <form id="miForm" action="../controllers/index.php?action=login" method="POST">
       <div class="mb-3">
         <input type="text" class="form-control form-control-lg rounded-3" id="usuario" name="usuario" placeholder="Usuario">
       </div>
