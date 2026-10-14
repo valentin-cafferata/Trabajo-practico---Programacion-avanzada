@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#f3e3ec"/>
+  <g fill="none" stroke="#d66aac" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M120 150 L120 95 L170 135"/>
+    <path d="M280 150 L280 95 L230 135"/>
+    <ellipse cx="200" cy="200" rx="95" ry="80"/>
+    <circle cx="165" cy="190" r="8" fill="#d66aac"/>
+    <circle cx="235" cy="190" r="8" fill="#d66aac"/>
+    <path d="M190 220 L210 220 L200 232 Z" fill="#d66aac"/>
+    <path d="M200 232 Q185 250 170 240"/>
+    <path d="M200 232 Q215 250 230 240"/>
+    <path d="M95 205 L140 210 M95 230 L140 225 M305 205 L260 210 M305 230 L260 225"/>
+  </g>
+  <text x="200" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" fill="#a85087">Sin foto</text>
+</svg>
