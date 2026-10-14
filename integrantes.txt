@@ -1,3 +1,6 @@
+Grupo: Marketplace de gatos fieros
+
+Integrantes:
 Valentin Cafferata
 Gabriel Boaglio
 Lucas Paz
