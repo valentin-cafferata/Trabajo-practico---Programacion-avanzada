@@ -1,5 +1,6 @@
 <?php
 // controllers/Controller.php
+// Clase base: herramientas que comparten todos los controladores
 
 class Controller {
 
@@ -17,8 +18,8 @@ class Controller {
     }
 
     protected function requiereLogin() {
-        if (!isset($_SESSION['usuario'])) {
-            self::flash('warning', 'Tenés que iniciar sesión para acceder a esa sección.');
+        if (!isset($_SESSION['usuario_id'])) {
+            self::flash('warning', 'Iniciá sesión para publicar o administrar tus gatos.');
             $this->redirigir('login');
         }
     }
@@ -31,6 +32,10 @@ class Controller {
             self::flash('danger', 'La sesión del formulario expiró. Volvé a intentarlo.');
             $this->redirigir();
         }
+    }
+
+    protected function usuarioId() {
+        return $_SESSION['usuario_id'] ?? null;
     }
 
     public static function flash($tipo, $mensaje) {

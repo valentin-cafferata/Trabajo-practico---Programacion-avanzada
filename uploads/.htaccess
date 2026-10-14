@@ -1,0 +1,6 @@
+# Los archivos subidos por usuarios solo se sirven como archivos estáticos:
+# nunca se ejecutan como PHP.
+<FilesMatch "\.(php|phtml|phar)$">
+    Require all denied
+</FilesMatch>
+php_flag engine off

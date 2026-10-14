@@ -30,3 +30,37 @@ body {
   background-color: #c45599 !important;
   border-color: #c45599 !important;
 }
+
+.btn-outline-primary {
+  color: #d66aac !important;
+  border-color: #d66aac !important;
+}
+
+.btn-outline-primary:hover {
+  color: #fff !important;
+  background-color: #d66aac !important;
+}
+
+.form-check-input:checked {
+  background-color: #d66aac;
+  border-color: #d66aac;
+}
+
+/* Tarjetas de publicaciones del marketplace */
+.card-gato {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  border-radius: 0.75rem;
+}
+
+.card-gato:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.card-gato img {
+  transition: transform 0.3s ease;
+}
+
+.card-gato:hover img {
+  transform: scale(1.04);
+}

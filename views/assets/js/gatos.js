@@ -1,20 +1,28 @@
-$(function () {
-    // Librería DataTables: búsqueda, orden y paginación de la tabla
-    new DataTable("#tabla-gatos", {
-        language: { url: "https://cdn.datatables.net/plug-ins/2.1.8/i18n/es-ES.json" },
-        pageLength: 5,
-        lengthMenu: [5, 10, 25, 50],
-        order: [[0, "asc"]],
-        columnDefs: [{ targets: -1, orderable: false, searchable: false }]
-    });
+document.addEventListener("DOMContentLoaded", function () {
+    // Librería DataTables: búsqueda, orden y paginación de la tabla "Mis publicaciones"
+    const tabla = document.getElementById("tabla-gatos");
+    if (tabla && typeof DataTable !== "undefined") {
+        new DataTable(tabla, {
+            language: { url: "https://cdn.datatables.net/plug-ins/2.1.8/i18n/es-ES.json" },
+            pageLength: 10,
+            lengthMenu: [5, 10, 25, 50],
+            order: [[7, "desc"]],
+            columnDefs: [
+                { targets: [0, -1], orderable: false, searchable: false }
+            ]
+        });
+    }
 
-    // Librería SweetAlert2: confirmación antes de dar de baja
-    $(document).on("submit", ".form-eliminar", function (evento) {
+    // Librería SweetAlert2: confirmación antes de eliminar una publicación
+    document.addEventListener("submit", function (evento) {
+        const form = evento.target;
+        if (!form.classList.contains("form-eliminar")) {
+            return;
+        }
         evento.preventDefault();
-        const form = this;
 
         Swal.fire({
-            title: "¿Eliminar a " + form.dataset.nombre + "?",
+            title: "¿Eliminar la publicación de " + form.dataset.nombre + "?",
             text: "Esta acción no se puede deshacer.",
             icon: "warning",
             showCancelButton: true,

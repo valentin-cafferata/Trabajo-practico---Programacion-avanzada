@@ -1,5 +1,6 @@
 <?php
 // controllers/AuthController.php
+// Login, registro y logout
 
 require_once __DIR__ . '/Controller.php';
 require_once __DIR__ . '/../models/UserModel.php';
@@ -7,12 +8,12 @@ require_once __DIR__ . '/../models/UserModel.php';
 class AuthController extends Controller {
 
     public function mostrarLogin() {
-        if (isset($_SESSION['usuario'])) {
-            $this->redirigir('inicio');
+        if ($this->usuarioId()) {
+            $this->redirigir();
         }
 
         $this->render('login', [
-            'tituloPagina' => 'Login',
+            'tituloPagina' => 'Iniciar sesión',
             'usuarioPrevio' => $_SESSION['usuario_previo'] ?? '',
         ]);
         unset($_SESSION['usuario_previo']);
@@ -25,14 +26,13 @@ class AuthController extends Controller {
 
         $usuario  = trim($_POST['usuario'] ?? '');
         $password = $_POST['password'] ?? '';
-        $captcha  = $_POST['g-recaptcha-response'] ?? '';
         $_SESSION['usuario_previo'] = $usuario;
 
         if ($usuario === '' || $password === '') {
             $this->fallar('Completá el usuario y la contraseña.');
         }
 
-        if (!$this->captchaValido($captcha)) {
+        if (!$this->captchaValido($_POST['g-recaptcha-response'] ?? '')) {
             $this->fallar('Debes completar el captcha.');
         }
 
@@ -46,13 +46,49 @@ class AuthController extends Controller {
             $this->fallar('Usuario o contraseña incorrectos.');
         }
 
-        session_regenerate_id(true);
         unset($_SESSION['usuario_previo']);
-        $_SESSION['usuario'] = $user['usuario'];
-        $_SESSION['nombre'] = $user['nombre'] ?: $user['usuario'];
+        $this->iniciarSesion($user);
 
-        self::flash('success', '¡Bienvenido, ' . $_SESSION['nombre'] . '!');
-        $this->redirigir('inicio');
+        self::flash('success', '¡Hola, ' . $user['nombre'] . '! Ya podés publicar tus gatos.');
+        $this->redirigir();
+    }
+
+    public function mostrarRegistro() {
+        if ($this->usuarioId()) {
+            $this->redirigir();
+        }
+        $this->render('registro', [
+            'tituloPagina' => 'Crear cuenta',
+            'datos' => [],
+            'errores' => [],
+        ]);
+    }
+
+    public function registrar() {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $this->redirigir('registro');
+        }
+
+        [$datos, $errores] = UserModel::validarRegistro($_POST);
+
+        if (!$this->captchaValido($_POST['g-recaptcha-response'] ?? '')) {
+            $errores['captcha'] = 'Debes completar el captcha.';
+        }
+
+        if ($errores) {
+            $this->render('registro', [
+                'tituloPagina' => 'Crear cuenta',
+                'datos' => $datos,
+                'errores' => $errores,
+            ]);
+            return;
+        }
+
+        $id = UserModel::crear($datos['usuario'], $datos['nombre'], $datos['password']);
+        $this->iniciarSesion(['id' => $id, 'usuario' => $datos['usuario'], 'nombre' => $datos['nombre']]);
+
+        self::flash('success', '¡Bienvenido, ' . $datos['nombre'] . '! Tu cuenta fue creada. Ya podés publicar tu primer gato.');
+        $this->redirigir('gato_nuevo');
     }
 
     public function logout() {
@@ -60,7 +96,14 @@ class AuthController extends Controller {
         session_destroy();
         session_start();
         self::flash('info', 'Cerraste sesión correctamente.');
-        $this->redirigir('login');
+        $this->redirigir();
+    }
+
+    private function iniciarSesion(array $user) {
+        session_regenerate_id(true);
+        $_SESSION['usuario_id'] = (int) $user['id'];
+        $_SESSION['usuario'] = $user['usuario'];
+        $_SESSION['nombre'] = $user['nombre'] ?: $user['usuario'];
     }
 
     private function captchaValido($captcha) {
@@ -75,7 +118,7 @@ class AuthController extends Controller {
         );
 
         if ($respuesta === false) {
-            $this->fallar('No se pudo verificar el captcha. Revisá tu conexión a internet.');
+            return false;
         }
 
         return !empty(json_decode($respuesta, true)['success']);

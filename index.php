@@ -12,17 +12,22 @@ require_once __DIR__ . '/controllers/HomeController.php';
 require_once __DIR__ . '/controllers/GatoController.php';
 
 $rutas = [
-    ''                => [HomeController::class, 'home'],
-    'inicio'          => [HomeController::class, 'inicio'],
-    'login'           => [AuthController::class, 'mostrarLogin'],
-    'autenticar'      => [AuthController::class, 'login'],
-    'logout'          => [AuthController::class, 'logout'],
-    'gatos'           => [GatoController::class, 'listar'],
-    'gato_nuevo'      => [GatoController::class, 'nuevo'],
-    'gato_guardar'    => [GatoController::class, 'guardar'],
-    'gato_editar'     => [GatoController::class, 'editar'],
-    'gato_actualizar' => [GatoController::class, 'actualizar'],
-    'gato_eliminar'   => [GatoController::class, 'eliminar'],
+    // Público
+    ''                  => [HomeController::class, 'home'],
+    'publicacion'       => [HomeController::class, 'publicacion'],
+    // Cuenta
+    'login'             => [AuthController::class, 'mostrarLogin'],
+    'autenticar'        => [AuthController::class, 'login'],
+    'registro'          => [AuthController::class, 'mostrarRegistro'],
+    'registrar'         => [AuthController::class, 'registrar'],
+    'logout'            => [AuthController::class, 'logout'],
+    // ABM de publicaciones (requiere sesión)
+    'mis_publicaciones' => [GatoController::class, 'misPublicaciones'],
+    'gato_nuevo'        => [GatoController::class, 'nuevo'],
+    'gato_guardar'      => [GatoController::class, 'guardar'],
+    'gato_editar'       => [GatoController::class, 'editar'],
+    'gato_actualizar'   => [GatoController::class, 'actualizar'],
+    'gato_eliminar'     => [GatoController::class, 'eliminar'],
 ];
 
 $accion = $_GET['accion'] ?? '';

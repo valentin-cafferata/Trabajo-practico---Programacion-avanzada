@@ -10,7 +10,7 @@ require __DIR__ . '/includes/header.php';
     <div class="text-center mb-4">
       <h5 class="text-primary fw-bold">Marketplace de gatos fieros</h5>
       <h3 class="fw-bold">Bienvenido de nuevo</h3>
-      <p class="text-muted">Ingresa tus datos para continuar</p>
+      <p class="text-muted">Iniciá sesión para publicar tus gatos</p>
     </div>
 
     <form id="miForm" action="index.php?accion=autenticar" method="POST" novalidate>
@@ -29,7 +29,11 @@ require __DIR__ . '/includes/header.php';
         <div class="g-recaptcha" data-sitekey="6LeRirktAAAAAKGHNZULA-G9Zt0AfYAadcQQfGHP"></div>
       </div>
 
-      <button type="submit" id="submit-btn" class="btn btn-primary btn-lg w-100 rounded-3 mb-2" disabled>Ingresar</button>
+      <button type="submit" id="submit-btn" class="btn btn-primary btn-lg w-100 rounded-3 mb-3" disabled>Ingresar</button>
+
+      <p class="text-center text-muted mb-0">
+        ¿No tenés cuenta? <a href="index.php?accion=registro" class="fw-semibold">Registrate</a>
+      </p>
     </form>
   </div>
 </div>
